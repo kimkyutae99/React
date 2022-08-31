@@ -14,6 +14,14 @@ const App = () => {
   /* ref */
   const nextId = useRef(4);
 
+  /* event */
+
+  // 삭제
+  const onRemove = useCallback((id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  });
+
+  // 입력
   const onInsert = useCallback(
     (text) => {
       const todo = {
@@ -31,7 +39,7 @@ const App = () => {
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}></TodoInsert>
-      <TodoList todos={todos}></TodoList>
+      <TodoList todos={todos} onRemove={onRemove}></TodoList>
     </TodoTemplate>
   );
 };
