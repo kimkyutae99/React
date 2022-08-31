@@ -2,7 +2,7 @@ import React from 'react';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
 
-const TodoList = ({ todos, onRemove }) => {
+const TodoList = ({ todos, onRemove, onToggle }) => {
   return (
     <div className='TodoList'>
       {todos?.map((todo) => (
@@ -10,6 +10,7 @@ const TodoList = ({ todos, onRemove }) => {
           todo={todo}
           key={todo.id}
           onRemove={onRemove}
+          onToggle={onToggle}
         ></TodoListItem>
       ))}
     </div>

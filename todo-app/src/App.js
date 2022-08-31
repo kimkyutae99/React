@@ -16,10 +16,25 @@ const App = () => {
 
   /* event */
 
+  // 수정
+  const onToggle = useCallback(
+    (id) => {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        ),
+      );
+    },
+    [todos],
+  );
+
   // 삭제
-  const onRemove = useCallback((id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  });
+  const onRemove = useCallback(
+    (id) => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+    },
+    [todos],
+  );
 
   // 입력
   const onInsert = useCallback(
@@ -39,7 +54,11 @@ const App = () => {
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}></TodoInsert>
-      <TodoList todos={todos} onRemove={onRemove}></TodoList>
+      <TodoList
+        todos={todos}
+        onRemove={onRemove}
+        onToggle={onToggle}
+      ></TodoList>
     </TodoTemplate>
   );
 };
